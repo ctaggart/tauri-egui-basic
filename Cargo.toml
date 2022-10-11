@@ -1,0 +1,18 @@
+[package]
+name = "tauri-egui-basic"
+version = "0.0.1"
+edition = "2021"
+publish = false
+
+[dependencies]
+eframe = { package = "eframe_tao", version = "0.20.0" }
+egui = "0.19"
+serde = { version = "1.0", features = [] }
+serde_json = "1.0"
+tauri = { version = "1.1", features = [] }
+tauri-egui = { version = "0.1.0", features = [] }
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+url = "2.2"
+urlencoding = "2"
