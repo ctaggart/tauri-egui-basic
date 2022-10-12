@@ -1,8 +1,10 @@
 //! A basic Windows app using tauri-egui
+//! $env:RUST_LOG="debug"
+//! cargo run
 
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] // hide console window on Windows in release
 
-use tauri::{RunEvent, Manager};
+use tauri::{RunEvent, Manager, WindowEvent};
 use tracing::{debug, info};
 
 fn main() {
@@ -30,9 +32,12 @@ fn main() {
         })
         .build(tauri::generate_context!())
         .expect("error while running tauri application")
-        .run(|_app, event| {
+        .run(|app, event| {
             if let RunEvent::WindowEvent { label, event, .. } = event {
                 debug!("{} {:?}", label, event);
+                if let WindowEvent::CloseRequested { .. } = event {
+                    app.exit(0);
+                }
             }
         });
 }
